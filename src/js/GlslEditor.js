@@ -6,7 +6,6 @@ import Menu from './ui/Menu';
 import Helpers from './ui/Helpers';
 import ErrorsDisplay from './ui/ErrorsDisplay';
 import VisualDebugger from './ui/VisualDebugger';
-import ExportIcon from './ui/ExportIcon';
 
 import FileDrop from './io/FileDrop';
 import BufferManager from './io/BufferManager';
@@ -159,10 +158,6 @@ export default class GlslEditor {
         this.errorsDisplay = new ErrorsDisplay(this);
         this.visualDebugger = new VisualDebugger(this);
 
-        if (this.options.exportIcon) {
-            this.export = new ExportIcon(this);
-        }
-
         // EVENTS
         this.editor.on('change', () => {
             if (this.autoupdate) {
@@ -180,36 +175,37 @@ export default class GlslEditor {
         // with our own UI and logic, since this allows for widespread abuse
         // of normal browser functionality.
         window.addEventListener('beforeunload', (event) => {
-            let content = {};
-            if (this.bufferManager && Object.keys(this.bufferManager.buffers).length !== 0) {
-                for (var key in this.bufferManager.buffers) {
-                    content[key] = this.bufferManager.buffers[key].getValue();
+            if (this.options.useLocalStorage) {
+                let content = {};
+                if (this.bufferManager && Object.keys(this.bufferManager.buffers).length !== 0) {
+                    for (var key in this.bufferManager.buffers) {
+                        content[key] = this.bufferManager.buffers[key].getValue();
+                    }
                 }
-            }
-            else {
-                content[(new Date().getTime()).toString()] = this.editor.getValue();
-            }
-
-            if (this.options.menu) {
+                else {
+                    content[(new Date().getTime()).toString()] = this.editor.getValue();
+                }
                 LocalStorage.setItem(STORAGE_LAST_EDITOR_CONTENT, JSON.stringify(content));
             }
         });
 
-        if (this.options.menu) {
-            // If there is previus content load it.
-            let oldContent = JSON.parse(LocalStorage.getItem(STORAGE_LAST_EDITOR_CONTENT));
-            if (oldContent) {
-                for (var key in oldContent) {
-                    this.open(oldContent[key], key);
-                }
-            }
-            else {
-                this.new();
-            }
-        }
-        else {
-            this.new();
-        }
+        // Remove quasi filesystem
+        // if (this.options.menu) {
+        //     // If there is previus content load it.
+        //     let oldContent = JSON.parse(LocalStorage.getItem(STORAGE_LAST_EDITOR_CONTENT));
+        //     if (oldContent) {
+        //         for (var key in oldContent) {
+        //             this.open(oldContent[key], key);
+        //         }
+        //     }
+        //     else {
+        //         this.new();
+        //     }
+        // }
+        // else {
+        //     this.new();
+        // }
+        this.new();
 
         return this;
     }

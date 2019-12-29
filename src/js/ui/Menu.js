@@ -1,5 +1,4 @@
 import MenuItem from './MenuItem';
-import ExportModal from './modals/ExportModal';
 
 export default class Menu {
     constructor (main) {
@@ -20,14 +19,7 @@ export default class Menu {
         // EXPORT
         this.menus.share = new MenuItem(this.el, 'ge_menu', '<i class="material-icons">arrow_upward</i> Download', (event) => {
             main.download();
-            // if (main.change || !this.exportModal) {
-            //     this.exportModal = new ExportModal('ge_export', { main: main, position: 'fixed' });
-            // }
-
-            // let bbox = this.menus.share.el.getBoundingClientRect();
-            // this.exportModal.presentModal(bbox.left - 5, bbox.top + bbox.height + 5);
         });
-
 
         // AUTOUPDATE
         // this.menus.autoupdate = new MenuItem(this.el, 'ge_menu', ' <i class="material-icons">autorenew</i> Update: ON', (event) => {
