@@ -83,7 +83,7 @@ export default class GlslEditor {
 
         // Default Theme
         if (!this.options.theme) {
-            this.options.theme = 'default';
+            this.options.theme = 'vscode-dark';
         }
 
         // Default Context

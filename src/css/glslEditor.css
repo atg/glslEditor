@@ -5,7 +5,7 @@
 :root {
     --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     /* -- font-family: 'Montserrat'; */
-    --editor-font-family: 'Source Code Pro', monospace;
+    --editor-font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
     --ui-base-color: #2f302b;
     --ui-component-color: #2e3033;
     --ui-element-color: #3a3c40;
@@ -51,10 +51,11 @@
 /* @import 'codemirror/theme/railscasts.css'; */
 /* @import 'codemirror/theme/seti.css'; */
 /* @import 'codemirror/theme/solarized.css'; */
-@import 'codemirror/theme/tomorrow-night-bright.css';
+/* @import 'codemirror/theme/tomorrow-night-bright.css'; */
 /* @import 'codemirror/theme/tomorrow-night-eighties.css'; */
 /* @import 'codemirror/theme/ttcn.css'; */
 /* @import 'codemirror/theme/yeti.css'; */
+@import 'codemirror-theme-vscode.css';
 
 /* Elements */
 @import '_menu.css';
