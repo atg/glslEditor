@@ -5,7 +5,7 @@
     <title>GLSL Editor</title>
     <!-- build:remove -->
     <!-- Connect to server process -->
-    <script>require('electron-connect').client.create()</script>
+    <!-- <script>require('electron-connect').client.create()</script> -->
     <!-- end:build -->
     <link type="text/css" rel="stylesheet" href="../build/glslEditor.css">
     <link type="text/css" rel="stylesheet" href="./css/ElectronApp.css">
@@ -16,13 +16,35 @@
   </body>
 
   <script>
+    class ShaderDelegate {
+      setUniform(key, val) {
+        console.log('SHDEL.setUniform()', key, val);
+      }
+      render(force) {
+        console.log('SHDEL.render()', force);
+      }
+      resize() {
+        console.log('SHDEL.resize()');
+      }
+      load(program) {
+        console.log('SHDEL.load()', program);
+      }
+      onError(cb) {
+        console.log('SHDEL.onError()', cb);
+      }
+      test(onTest, testingFrag) {
+        console.log('SHDEL.test()', onTest, testingFrag);
+      }
+    }
+    const shaderDelegate = new ShaderDelegate();
     window.glslEditor = new GlslEditor('#glsl_editor', {
       canvas_size: 500,
       theme: 'monokai',
       multipleBuffers: true,
       watchHash: true,
       fileDrops: true,
-      menu: true
+      menu: true,
+      shaderDelegate,
     });
   </script>
 </html>

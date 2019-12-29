@@ -159,7 +159,7 @@ export default class GlslEditor {
         }
 
         // CORE elements
-        this.shader = new Shader(this);
+        this.shader = new Shader(this, this.options.shaderDelegate);
         this.editor = initEditor(this);
 
         this.helpers = new Helpers(this);
@@ -343,7 +343,7 @@ export default class GlslEditor {
 
         // Download code
         const blob = new Blob([content], { type: 'text/plain' });
-        saveAs(blob, name + '.frag');
+        saveAs(blob, name + '.fx');
         this.editor.doc.markClean();
         this.change = false;
     }
