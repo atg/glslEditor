@@ -1,4 +1,3 @@
-import 'document-register-element';
 import Shader from './core/Shader';
 import { initEditor, focusAll } from './core/Editor';
 
@@ -329,6 +328,7 @@ export default class GlslEditor {
     }
 
     createFontLink() {
+        /*
         var head = document.getElementsByTagName('head')[0];
         var link = document.createElement('link');
         link.href = 'https://fonts.googleapis.com/icon?family=Material+Icons';
@@ -337,6 +337,7 @@ export default class GlslEditor {
         link.media = 'screen,print';
         head.appendChild(link);
         document.getElementsByTagName('head')[0].appendChild(link);
+        */
     }
 
     togglePresentationWindow(flag) {
@@ -380,5 +381,3 @@ GlslWebComponent.prototype.createdCallback = function createdCallback() {
 
     this.glslEditor = new GlslEditor(this, options);
 };
-
-document.registerElement('glsl-editor', GlslWebComponent);

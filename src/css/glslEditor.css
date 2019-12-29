@@ -33,37 +33,37 @@
 @import 'codemirror/addon/hint/show-hint.css';
 
 /* Themes */
-@import 'codemirror/theme/ambiance.css';
-@import 'codemirror/theme/base16-dark.css';
-@import 'codemirror/theme/base16-light.css';
-@import 'codemirror/theme/dracula.css';
-@import 'codemirror/theme/eclipse.css';
-@import 'codemirror/theme/elegant.css';
-@import 'codemirror/theme/icecoder.css';
-@import 'codemirror/theme/lesser-dark.css';
-@import 'codemirror/theme/material.css';
-@import 'codemirror/theme/mdn-like.css';
-@import 'codemirror/theme/midnight.css';
-@import 'codemirror/theme/monokai.css';
-@import 'codemirror/theme/neat.css';
-@import 'codemirror/theme/neo.css';
-@import 'codemirror/theme/pastel-on-dark.css';
-@import 'codemirror/theme/railscasts.css';
-@import 'codemirror/theme/seti.css';
-@import 'codemirror/theme/solarized.css';
+/* @import 'codemirror/theme/ambiance.css'; */
+/* @import 'codemirror/theme/base16-dark.css'; */
+/* @import 'codemirror/theme/base16-light.css'; */
+/* @import 'codemirror/theme/dracula.css'; */
+/* @import 'codemirror/theme/eclipse.css'; */
+/* @import 'codemirror/theme/elegant.css'; */
+/* @import 'codemirror/theme/icecoder.css'; */
+/* @import 'codemirror/theme/lesser-dark.css'; */
+/* @import 'codemirror/theme/material.css'; */
+/* @import 'codemirror/theme/mdn-like.css'; */
+/* @import 'codemirror/theme/midnight.css'; */
+/* @import 'codemirror/theme/monokai.css'; */
+/* @import 'codemirror/theme/neat.css'; */
+/* @import 'codemirror/theme/neo.css'; */
+/* @import 'codemirror/theme/pastel-on-dark.css'; */
+/* @import 'codemirror/theme/railscasts.css'; */
+/* @import 'codemirror/theme/seti.css'; */
+/* @import 'codemirror/theme/solarized.css'; */
 @import 'codemirror/theme/tomorrow-night-bright.css';
-@import 'codemirror/theme/tomorrow-night-eighties.css';
-@import 'codemirror/theme/ttcn.css';
-@import 'codemirror/theme/yeti.css';
+/* @import 'codemirror/theme/tomorrow-night-eighties.css'; */
+/* @import 'codemirror/theme/ttcn.css'; */
+/* @import 'codemirror/theme/yeti.css'; */
 
 /* Elements */
-@import '_menu';
-@import '_panel';
-@import '_editor';
-@import '_shader';
+@import '_menu.css';
+@import '_panel.css';
+@import '_editor.css';
+@import '_shader.css';
 
-@import '_pickers';
-@import '_modals';
-@import '_errors';
-@import '_debugger';
-@import '_icons';
+@import '_pickers.css';
+@import '_modals.css';
+@import '_errors.css';
+@import '_debugger.css';
+@import '_icons.css';

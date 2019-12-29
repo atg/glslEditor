@@ -49,7 +49,7 @@ export function initEditor (main) {
         autoCloseBrackets: true,
         extraKeys: { 'Ctrl-Space': 'autocomplete' },
         showCursorWhenSelecting: true,
-        theme: main.options.theme,
+        theme: 'tomorrow-night-bright', //main.options.theme,
         dragDrop: false,
         indentUnit: main.options.indentUnit,
         tabSize: main.options.tabSize,

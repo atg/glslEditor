@@ -12,12 +12,16 @@ export default class Menu {
         // this.menus.autoupdate.button.style.color = main.autoupdate ? 'white' : 'gray';
 
         // TEST
-        this.menus.test = new MenuItem(this.el, 'ge_menu', '<i class="material-icons">timeline</i> Test', (event) => {
-            main.visualDebugger.check();
-        });
+        if (main.options.shaderDelegate && main.options.shaderDelegate.test) {
+            // <i class="material-icons">timeline</i>
+            this.menus.test = new MenuItem(this.el, 'ge_menu', 'Test', (event) => {
+                main.visualDebugger.check();
+            });
+        }
 
         // EXPORT
-        this.menus.share = new MenuItem(this.el, 'ge_menu', '<i class="material-icons">arrow_upward</i> Download', (event) => {
+        // <i class="material-icons">arrow_downward</i>
+        this.menus.share = new MenuItem(this.el, 'ge_menu', 'Download', (event) => {
             main.download();
         });
 

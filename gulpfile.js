@@ -6,7 +6,6 @@ var derequire = require('gulp-derequire');
 var livereload = require('gulp-livereload');
 var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
-var electron = require('electron-connect').server.create();
 
 var paths = {
     styles: 'src/css/**/*.css',
@@ -98,8 +97,6 @@ gulp.task('run', function () {
 
 // Build files, do not watch
 gulp.task('build', ['css', 'js']);
-
-gulp.task('electron', ['css', 'js', 'watch', 'run']);
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('default', ['css', 'js', 'watch']);

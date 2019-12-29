@@ -7,9 +7,23 @@
     <!-- Connect to server process -->
     <!-- <script>require('electron-connect').client.create()</script> -->
     <!-- end:build -->
+    <!-- <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="screen"> -->
     <link type="text/css" rel="stylesheet" href="../dist/glslEditor.css">
-    <link type="text/css" rel="stylesheet" href="./css/ElectronApp.css">
+    <!-- <link type="text/css" rel="stylesheet" href="./css/ElectronApp.css"> -->
     <script type="application/javascript" src="../dist/glslEditor.js"></script>
+    <style>
+    #glsl_editor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 400px;
+      min-height: 400px;
+      user-select: none; /* fix drag issue */
+    }
+    .CodeMirror {
+      margin-top: 0;
+    }
+    </style>
   </head>
   <body>
     <div id="glsl_editor"></div>
@@ -33,9 +47,35 @@
         console.log('SHDEL.onError()', cb);
       }
       test(onTest, testingFrag) {
+        // See: https://github.com/patriciogonzalezvivo/glslCanvas/blob/master/src/GlslCanvas.js#L291
         console.log('SHDEL.test()', onTest, testingFrag);
       }
     }
+    const el = document.getElementById('glsl_editor');
+    let listener;
+    el.addEventListener('mouseup', () => {
+      if (listener) {
+        window.removeEventListener('mousemove', listener);
+      }
+    });
+    el.addEventListener('mousedown', (edown) => {
+      const top0 = Number(el.style.top.slice(0,-2).trim());
+      const left0 = Number(el.style.left.slice(0,-2).trim());
+      const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      listener = (emove) => {
+        const dx = emove.clientX - edown.clientX;
+        const dy = emove.clientY - edown.clientY;
+        function clamp(x,a,b) {
+          return Math.min(Math.max(x, a), b);
+        }
+        const top1 = clamp(top0+dy, 0, h*3/4);
+        const left1 = clamp(left0+dx, 0, w*3/4);
+        el.style.top = `${top1}px`;
+        el.style.left = `${left1}px`;
+      };
+      window.addEventListener('mousemove', listener);
+    });
     const shaderDelegate = new ShaderDelegate();
     window.glslEditor = new GlslEditor('#glsl_editor', {
       canvas_size: 500,
