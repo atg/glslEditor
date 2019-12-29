@@ -61,8 +61,7 @@
     "babel-runtime": "5.8.29",
     "codemirror": "5.8.0",
     "document-register-element": "^1.9.1",
-    "eslint": "^4.11.0",
-    "xhr": "^2.2.0"
+    "eslint": "^4.11.0"
   },
   "browserify-shim": {}
 }

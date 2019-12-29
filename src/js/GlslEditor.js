@@ -13,7 +13,7 @@ import LocalStorage from './io/LocalStorage';
 const STORAGE_LAST_EDITOR_CONTENT = 'last-content';
 
 // Import Utils
-import xhr from 'xhr';
+// Removed: import xhr from 'xhr';
 import { subscribeMixin } from './tools/mixin';
 
 // 3er Parties
@@ -185,14 +185,14 @@ export default class GlslEditor {
                 else {
                     content[(new Date().getTime()).toString()] = this.editor.getValue();
                 }
-                LocalStorage.setItem(STORAGE_LAST_EDITOR_CONTENT, JSON.stringify(content));
+                LocalStorage.shared.set(STORAGE_LAST_EDITOR_CONTENT, JSON.stringify(content));
             }
         });
 
         // Remove quasi filesystem
         // if (this.options.menu) {
         //     // If there is previus content load it.
-        //     let oldContent = JSON.parse(LocalStorage.getItem(STORAGE_LAST_EDITOR_CONTENT));
+        //     let oldContent = JSON.parse(LocalStorage.shared.get(STORAGE_LAST_EDITOR_CONTENT));
         //     if (oldContent) {
         //         for (var key in oldContent) {
         //             this.open(oldContent[key], key);
@@ -242,6 +242,8 @@ export default class GlslEditor {
     }
 
     open (shader, tabName) {
+        // Removed
+        /*
         if (typeof shader === 'object') {
             const reader = new FileReader();
             let ge = this;
@@ -265,6 +267,7 @@ export default class GlslEditor {
                 this.setContent(shader, tabName);
             }
         }
+        */
     }
 
     getContent() {
@@ -337,17 +340,11 @@ export default class GlslEditor {
     }
 
     togglePresentationWindow(flag) {
-        this.pWindowOpen = flag;
-        if (flag) {
-            this.shader.openWindow();
-        }
-        else {
-            this.shader.closeWindow();
-        }
+        // Removed
     }
 
     onClosePresentationWindow() {
-        this.pWindowOpen = false;
+        // Removed
     }
 }
 
