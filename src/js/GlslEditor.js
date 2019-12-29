@@ -9,7 +9,6 @@ import VisualDebugger from './ui/VisualDebugger';
 import ExportIcon from './ui/ExportIcon';
 
 import FileDrop from './io/FileDrop';
-import HashWatch from './io/HashWatch';
 import BufferManager from './io/BufferManager';
 import LocalStorage from './io/LocalStorage';
 const STORAGE_LAST_EDITOR_CONTENT = 'last-content';
@@ -20,10 +19,6 @@ import { subscribeMixin } from './tools/mixin';
 
 // 3er Parties
 import { saveAs } from './vendor/FileSaver.min.js';
-
-// Cross storage for Openframe -- allows restricted access to certain localStorage operations
-// on the openframe domain
-import { CrossStorageClient } from 'cross-storage';
 
 const EMPTY_FRAG_SHADER = `// Author:
 // Title:
@@ -119,9 +114,7 @@ export default class GlslEditor {
         }
 
         // Listen to hash changes
-        if (this.options.watchHash) {
-            new HashWatch(this);
-        }
+        // removed
 
         // Load UI
         if (this.options.menu) {
@@ -178,17 +171,7 @@ export default class GlslEditor {
         });
 
         if (this.options.canvas_follow) {
-            this.shader.el.style.position = 'relative';
-            if (this.options.canvas_float) {
-                this.shader.el.style.float = this.options.canvas_float;
-            }
-            this.editor.on('cursorActivity', (cm) => {
-                let height = cm.heightAtLine(cm.getCursor().line + 1, 'local') - this.shader.el.clientHeight;
-                if (height < 0) {
-                    height = 0.0;
-                }
-                this.shader.el.style.top = height.toString() + 'px';
-            });
+            // Removed
         }
 
         // If the user bails for whatever reason, hastily shove the contents of
@@ -226,15 +209,6 @@ export default class GlslEditor {
         }
         else {
             this.new();
-        }
-
-        if (this.options.menu || this.options.exportIcon) {
-            // setup CrossStorage client
-            this.storage = new CrossStorageClient('https://openframe.io/hub.html');
-            this.storage.onConnect().then(() => {
-                console.log('Connected to OpenFrame [o]');
-            });
-            // }).bind(this);
         }
 
         return this;
@@ -326,11 +300,6 @@ export default class GlslEditor {
         else {
             return 'unknown';
         }
-    }
-
-    // Returns Promise
-    getOfToken() {
-        return this.storage.get('accessToken');
     }
 
     download () {
