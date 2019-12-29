@@ -42,7 +42,7 @@ gulp.task('css', function () {
         .pipe(sourcemaps.init())
         .pipe(postcss(plugins))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest('./dist'))
         .pipe(livereload());
 });
 
@@ -75,10 +75,10 @@ gulp.task('js', function () {
         // Add transformation tasks to the pipeline here.
         // .on('error', gutil.log)
         // .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest('./dist'))
         .pipe(uglify())
         .pipe(rename({ extname: '.min.js' }))
-        .pipe(gulp.dest('./build'));
+        .pipe(gulp.dest('./dist'));
 });
 
 // Rerun the task when a file changes
@@ -92,7 +92,7 @@ gulp.task('run', function () {
     // Start browser process
     electron.start();
     // Reload browser process
-    gulp.watch(['build/glslEditor.css', 'build/glslEditor.js','src/index.html'], electron.reload);
+    gulp.watch(['dist/glslEditor.css', 'dist/glslEditor.js','src/index.html'], electron.reload);
     gulp.watch(['src/main.js'], electron.restart);
 });
 
